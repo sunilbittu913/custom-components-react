@@ -1,0 +1,12 @@
+src/
+.storybook/
+*.stories.tsx
+*.test.tsx
+.gitignore
+.vscode/
+.idea/
+tsconfig.json
+vite.config.ts
+storybook-static/
+node_modules/
+.DS_Store
