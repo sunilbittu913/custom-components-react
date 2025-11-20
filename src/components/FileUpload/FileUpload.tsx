@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 export interface FileUploadProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
     /**
@@ -42,9 +42,13 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     ...props
 }) => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const [selectedFileName, setSelectedFileName] = useState<string>('');
     const fileInputId = id || 'file-upload';
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const fileName = e.target.files?.[0]?.name || '';
+        setSelectedFileName(fileName);
+
         if (onFileSelect) {
             onFileSelect(e.target.files);
         }
@@ -79,7 +83,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                     {buttonText}
                 </button>
                 <span className="file-upload-text">
-                    {inputRef.current?.files?.[0]?.name || 'No file chosen'}
+                    {selectedFileName || 'No file chosen'}
                 </span>
             </div>
 

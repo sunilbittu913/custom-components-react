@@ -1,15 +1,15 @@
 import React from 'react';
 
-export interface TableColumn<T = any> {
+export interface TableColumn<T = Record<string, unknown>> {
     key: string;
     title: string;
     dataIndex?: string;
-    render?: (value: any, record: T, index: number) => React.ReactNode;
+    render?: (value: unknown, record: T, index: number) => React.ReactNode;
     width?: number | string;
     align?: 'left' | 'center' | 'right';
 }
 
-export interface TableProps<T = any> {
+export interface TableProps<T = Record<string, unknown>> {
     /**
      * Table columns configuration
      */
@@ -51,7 +51,7 @@ export interface TableProps<T = any> {
 /**
  * Table component for displaying tabular data
  */
-export function Table<T = any>({
+export function Table<T = Record<string, unknown>>({
     columns,
     dataSource,
     rowKey = 'id',
@@ -66,15 +66,26 @@ export function Table<T = any>({
         if (typeof rowKey === 'function') {
             return rowKey(record);
         }
-        return (record as any)[rowKey] || String(index);
+        const keyValue = (record as Record<string, unknown>)[rowKey];
+        // Only convert primitive types to string
+        if (
+            typeof keyValue === 'string' ||
+            typeof keyValue === 'number' ||
+            typeof keyValue === 'boolean'
+        ) {
+            return String(keyValue);
+        }
+        return String(index);
     };
 
-    const getCellValue = (column: TableColumn<T>, record: T, index: number) => {
+    const getCellValue = (column: TableColumn<T>, record: T, index: number): React.ReactNode => {
         if (column.render) {
-            const value = column.dataIndex ? (record as any)[column.dataIndex] : record;
+            const value = column.dataIndex ? (record as Record<string, unknown>)[column.dataIndex] : record;
             return column.render(value, record, index);
         }
-        return column.dataIndex ? (record as any)[column.dataIndex] : null;
+        const value = column.dataIndex ? (record as Record<string, unknown>)[column.dataIndex] : null;
+        // Type assertion to ReactNode since we're displaying it in the UI
+        return value as React.ReactNode;
     };
 
     if (loading) {

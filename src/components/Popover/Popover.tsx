@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 export type PopoverPlacement = 'top' | 'right' | 'bottom' | 'left';
 
@@ -57,12 +57,12 @@ export const Popover: React.FC<PopoverProps> = ({
     const isControlled = controlledOpen !== undefined;
     const open = isControlled ? controlledOpen : internalOpen;
 
-    const setOpen = (value: boolean) => {
+    const setOpen = useCallback((value: boolean) => {
         if (!isControlled) {
             setInternalOpen(value);
         }
         onOpenChange?.(value);
-    };
+    }, [isControlled, onOpenChange]);
 
     useEffect(() => {
         if (!open) return;
@@ -80,7 +80,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [open]);
+    }, [open, setOpen]);
 
     const handleTriggerClick = () => {
         if (trigger === 'click') {

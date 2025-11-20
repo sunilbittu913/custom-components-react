@@ -22,6 +22,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
+    args: {
+        open: false,
+        children: 'Placeholder',
+    },
     render: () => {
         const [open, setOpen] = useState(false);
 
@@ -41,6 +45,10 @@ export const Basic: Story = {
 };
 
 export const WithFooter: Story = {
+    args: {
+        open: false,
+        children: 'Placeholder',
+    },
     render: () => {
         const [open, setOpen] = useState(false);
 
@@ -70,6 +78,10 @@ export const WithFooter: Story = {
 };
 
 export const SmallDialog: Story = {
+    args: {
+        open: false,
+        children: 'Placeholder',
+    },
     render: () => {
         const [open, setOpen] = useState(false);
 
@@ -90,6 +102,10 @@ export const SmallDialog: Story = {
 };
 
 export const LargeDialog: Story = {
+    args: {
+        open: false,
+        children: 'Placeholder',
+    },
     render: () => {
         const [open, setOpen] = useState(false);
 
@@ -112,6 +128,10 @@ export const LargeDialog: Story = {
 };
 
 export const NoCloseButton: Story = {
+    args: {
+        open: false,
+        children: 'Placeholder',
+    },
     render: () => {
         const [open, setOpen] = useState(false);
 
@@ -127,7 +147,7 @@ export const NoCloseButton: Story = {
                         <Button onClick={() => setOpen(false)}>Close</Button>
                     }
                 >
-                    <p>This dialog doesn't have a close button in the header.</p>
+                    <p>This dialog doesn&apos;t have a close button in the header.</p>
                     <p>You must use the footer button or press Escape to close.</p>
                 </Dialog>
             </>

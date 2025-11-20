@@ -65,7 +65,9 @@ export const Closable: Story = {
 };
 
 export const AllVariants: Story = {
-    args: {},
+    args: {
+        children: 'Placeholder',
+    },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: '500px' }}>
             <Alert variant="info" title="Info">
