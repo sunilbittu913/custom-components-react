@@ -1,4 +1,4 @@
-# Custom React Components
+# Sarvora Base UI
 
 A modern, TypeScript-based React component library with Storybook documentation. This library provides reusable, customizable UI components that are ready to publish to npm.
 
@@ -14,7 +14,7 @@ A modern, TypeScript-based React component library with Storybook documentation.
 ## Installation
 
 ```bash
-npm install @custom-components-react/ui
+npm install sarvora-base-ui
 ```
 
 ## Usage
@@ -22,8 +22,8 @@ npm install @custom-components-react/ui
 ### Basic Import
 
 ```tsx
-import { Button, Card, Input } from '@custom-components-react/ui';
-import '@custom-components-react/ui/styles';
+import { Button, Card, Input } from 'sarvora-base-ui';
+import 'sarvora-base-ui/styles';
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
 A versatile button component with multiple variants and sizes.
 
 ```tsx
-import { Button } from '@custom-components-react/ui';
+import { Button } from 'sarvora-base-ui';
 
 // Variants: primary, secondary, danger
 <Button variant="primary">Primary Button</Button>
@@ -67,7 +67,7 @@ import { Button } from '@custom-components-react/ui';
 A flexible card component for displaying content in a container.
 
 ```tsx
-import { Card } from '@custom-components-react/ui';
+import { Card } from 'sarvora-base-ui';
 
 // Basic card
 <Card header="Card Title">
@@ -98,7 +98,7 @@ import { Card } from '@custom-components-react/ui';
 An input component with label, helper text, and error states.
 
 ```tsx
-import { Input } from '@custom-components-react/ui';
+import { Input } from 'sarvora-base-ui';
 
 // With label and helper text
 <Input 
